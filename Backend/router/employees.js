@@ -25,7 +25,7 @@ router.get("/",async(req,res)=>{
   }
 })
 //Search By Id
-router.get('/:id',async(req,res)=>{
+router.get('/search/:id',async(req,res)=>{
     if(objectId.isValid(req.params.id)){
        
             try {
@@ -39,9 +39,33 @@ router.get('/:id',async(req,res)=>{
         
 
      }else{
-                res.status(400).send("You can only update your profil")
+                res.status(400).send("You can only Find your profil")
         
           }
+})
+
+//update 
+router.put('/update/:id',async(req,res)=>{
+    if(objectId.isValid(req.params.id)){
+        let emp = new empModels(req.body)
+        try {
+            const updateUser = await empModels.findByIdAndUpdate(req.params.id,{
+                $set:emp
+            },{
+                new:true
+            })
+            res.status(200).json(updateUser)
+            
+          } catch (err) {
+            res.status(400).json(err);
+            
+          }
+    
+
+ }else{
+            res.status(400).send("You can only update your profil")
+    
+      }
 })
 
 module.exports= router
