@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const empModels = require("../models/employee")
 
-router.post('/',async(req,res)=>{
+router.post('/add',async(req,res)=>{
     const newEmployee = new empModels(req.body)
 
     try {
@@ -12,7 +12,17 @@ router.post('/',async(req,res)=>{
     }
 })
 
+router.get("/",async(req,res)=>{
+  const Allemployee = new empModels.find()
 
+  try {
+    res.status(200).json(Allemployee)
+    
+  } catch (err) {
+    res.status(400).json(err)
+    
+  }
+})
 
 
 module.exports= router
