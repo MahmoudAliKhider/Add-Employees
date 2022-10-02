@@ -68,4 +68,20 @@ router.put('/update/:id',async(req,res)=>{
       }
 })
 
+//delate
+router.delete('/delate/:id',async(req,res)=>{
+    const delateUser = req.params.id
+       
+            try {
+                const remove = await empModels.remove({_id:delateUser})
+                res.status(200).json(remove)
+                
+              } catch (err) {
+                res.status(400).json(err)
+                
+              }
+        
+
+})
+
 module.exports= router
