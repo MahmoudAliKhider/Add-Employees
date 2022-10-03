@@ -2,7 +2,7 @@ const router = require("express").Router()
 const empModels = require("../models/employee")
 const objectId = require('mongoose').Types.ObjectId
 
-router.post('/add',async(req,res)=>{
+router.post('/',async(req,res)=>{
     const newEmployee = new empModels(req.body)
 
     try {
@@ -25,7 +25,7 @@ router.get("/",async(req,res)=>{
   }
 })
 //Search By Id
-router.get('/search/:id',async(req,res)=>{
+router.get('/:id',async(req,res)=>{
     if(objectId.isValid(req.params.id)){
        
             try {
@@ -45,7 +45,7 @@ router.get('/search/:id',async(req,res)=>{
 })
 
 //update 
-router.put('/update/:id',async(req,res)=>{
+router.put('/:id',async(req,res)=>{
     if(objectId.isValid(req.params.id)){
         let emp = new empModels(req.body)
         try {
@@ -69,11 +69,11 @@ router.put('/update/:id',async(req,res)=>{
 })
 
 //delate
-router.delete('/delate/:id',async(req,res)=>{
+router.delete('/:id',async(req,res)=>{
     const delateUser = req.params.id
        
             try {
-                const remove = await empModels.remove({_id:delateUser})
+                const remove = await empModels.findByIdAndRemove({_id:delateUser})
                 res.status(200).json(remove)
                 
               } catch (err) {

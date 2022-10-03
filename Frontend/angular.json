@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "915d90cc-cb55-4d71-ba32-bf55771488d8"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Frontend": {
+    "frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -23,6 +26,8 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -64,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Frontend:build:production"
+              "browserTarget": "frontend:build:production"
             },
             "development": {
-              "browserTarget": "Frontend:build:development"
+              "browserTarget": "frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Frontend:build"
+            "browserTarget": "frontend:build"
           }
         },
         "test": {
@@ -98,7 +103,5 @@
       }
     }
   },
-  "cli": {
-    "analytics": "c9ed4381-a842-49b3-b283-8fdd5061e08d"
-  }
+  "defaultProject": "frontend"
 }
